@@ -25,6 +25,8 @@ assert.equal(brand.remplis, 0);
 assert.equal(brand.files.find((f) => f.path.endsWith('guide_editorial.md')).rempli, false);
 const strat = model.domains.find((d) => d.id === 'strategie');
 assert.equal(strat.files.find((f) => f.path.endsWith('hypotheses.md')).rempli, true);
+// tags épistémiques ([HYPOTHÈSE], [DONNÉE RÉELLE]…) ≠ placeholders de template → rempli
+assert.equal(strat.files.find((f) => f.path.endsWith('decisions-log.md')).rempli, true);
 
 // — STATE.md détecté (domaine produit)
 assert.equal(model.state.present, true);

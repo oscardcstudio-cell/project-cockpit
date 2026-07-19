@@ -11,12 +11,24 @@ import companyDomains from '../domains/companyDomains.js';
 const FILLED_MIN_BYTES = 600; // en dessous : considéré squelette/template (heuristique affichée comme telle)
 // ≥ 2 placeholders type [NOM DE L'ENTREPRISE] = template create-company pas encore rempli
 const PLACEHOLDER_RE = /\[[A-ZÀ-Ÿ][A-ZÀ-Ÿ0-9 '’/.-]{2,}\]/g;
+// Tags épistémiques marquant le statut d'une affirmation dans un doc rempli
+// ([HYPOTHÈSE], [DONNÉE RÉELLE], [À SOURCER]…) : ce ne sont PAS des placeholders
+// de template — un decisions-log dense en est truffé. Exemptés par préfixe.
+const EPISTEMIC_TAG_PREFIXES = [
+    'HYPOTHÈSE', 'DONNÉE RÉELLE', 'À SOURCER', 'À VÉRIFIER', 'À MESURER',
+    'TODO', 'WIP', 'N/A',
+];
+
+function isPlaceholder(match) {
+    const inner = match.slice(1, -1);
+    return !EPISTEMIC_TAG_PREFIXES.some((p) => inner.startsWith(p));
+}
 
 function isFilled(root, rel, bytes) {
     if (bytes < FILLED_MIN_BYTES) return false;
     if (!/\.md$/i.test(rel)) return true;
     const content = safeRead(root, rel) ?? '';
-    return (content.match(PLACEHOLDER_RE) ?? []).length < 2;
+    return (content.match(PLACEHOLDER_RE) ?? []).filter(isPlaceholder).length < 2;
 }
 
 function safeRead(root, rel) {

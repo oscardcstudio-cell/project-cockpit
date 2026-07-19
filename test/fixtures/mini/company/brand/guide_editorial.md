@@ -1,0 +1,4 @@
+# Guide éditorial — [NOM DE L'ENTREPRISE]
+
+Ton de voix : [ADJECTIF 1], [ADJECTIF 2].
+Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. Section template avec des instructions génériques pour remplir plus tard. 

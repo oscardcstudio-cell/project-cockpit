@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cockpit — NOM DE TON ENTREPRISE</title>
+<style>
+:root { --bg:#0d1117; --bg2:#161b22; --fg:#c9d1d9; --fg2:#8b949e; --border:#30363d; --accent:#58a6ff; --ok:#3fb950; --warn:#d29922; }
+html.light { --bg:#f6f8fa; --bg2:#ffffff; --fg:#1f2328; --fg2:#57606a; --border:#d0d7de; --accent:#0969da; --ok:#1a7f37; --warn:#9a6700; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; padding:24px; }
+header { display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:20px; }
+h1 { font-size:18px; margin:0; } h1 small { color:var(--fg2); font-weight:normal; }
+h2 { font-size:16px; margin:0; } h3 { font-size:13px; color:var(--fg2); text-transform:uppercase; letter-spacing:.05em; }
+#mode { background:none; border:1px solid var(--border); color:var(--fg); padding:4px 10px; border-radius:6px; cursor:pointer; }
+.tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-bottom:20px; }
+.tile { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+.tile .v { font-size:20px; font-weight:600; } .tile .k { color:var(--fg2); font-size:12px; }
+.rail { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.ph { border:1px solid var(--border); border-radius:6px; padding:4px 10px; font-size:12px; color:var(--fg2); background:var(--bg2); }
+.ph.cur { border-color:var(--accent); color:var(--fg); }
+.ph.done .sym { color:var(--ok); } .ph.cur .sym { color:var(--accent); }
+.ph .lab { color:var(--fg2); font-size:11px; margin-left:4px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin-bottom:24px; }
+.card { text-align:left; background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:14px; cursor:pointer; color:var(--fg); font:inherit; }
+.card:hover, .card.active { border-color:var(--accent); }
+.card-head { display:flex; justify-content:space-between; gap:8px; align-items:baseline; }
+.dom { font-weight:600; } .card-sub { color:var(--fg2); font-size:12px; margin-top:6px; }
+.st { font-size:12px; white-space:nowrap; } .st.ok { color:var(--ok); } .st.warn { color:var(--warn); } .st.muted { color:var(--fg2); }
+.panel { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:16px 18px; margin-bottom:24px; }
+.panel-head { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.copy { background:var(--accent); color:var(--bg); border:none; border-radius:6px; padding:6px 12px; font:inherit; font-weight:600; cursor:pointer; }
+.copy.copied { background:var(--ok); }
+.twrap { overflow-x:auto; } table { border-collapse:collapse; width:100%; font-size:13px; }
+th, td { text-align:left; padding:5px 10px; border-bottom:1px solid var(--border); } th { color:var(--fg2); font-weight:normal; }
+td.num { text-align:right; color:var(--fg2); }
+pre { background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:12px; overflow-x:auto; font-size:12px; }
+code { color:var(--accent); } ul { padding-left:20px; } li { margin:3px 0; }
+.muted-t { color:var(--fg2); } footer { color:var(--fg2); font-size:12px; margin-top:8px; }
+details summary { cursor:pointer; color:var(--fg2); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cockpit NOM DE TON ENTREPRISE <small>· généré le 2026-07-18 · lecture seule</small></h1>
+  <button id="mode" type="button">light / dark</button>
+</header>
+<div class="tiles">
+  <div class="tile"><div class="v">P2</div><div class="k">Stratégie &amp; business model (heuristique livrables)</div></div>
+  <div class="tile"><div class="v">17 / 18</div><div class="k">livrables du playbook remplis</div></div>
+  <div class="tile"><div class="v">28 j</div><div class="k">dernière activité company/</div></div>
+  <div class="tile"><div class="v">— absent</div><div class="k">.planning/STATE.md (GSD)</div></div>
+</div>
+<div class="rail"><div class="ph done" title="problème formulé en une phrase + cible identifiée (qui souffre de ce problème)."><span class="sym">✓</span> P0 Cadrage / idée <span class="lab">passée</span></div><div class="ph done" title="problème confirmé par signal réel — concrètement : **≥ 5 entretiens cible où la douleur ressort *sans qu&#39;on l&#39;induise***, OU un fake-door / pré-inscriptions avec un taux qui dépasse le hasard. **Sinon : pivot ou kill** (cf. note solo founder)."><span class="sym">✓</span> P1 Validation / discovery <span class="lab">passée</span></div><div class="ph cur" title="unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d&#39;échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?"><span class="sym">▶</span> P2 Stratégie &amp; business model <span class="lab">en cours</span></div><div class="ph todo" title="`plateforme.md` + `guide_editorial.md` posés — de quoi produire un texte de test qui sonne juste. **Suffisant pour passer à P4.**"><span class="sym">○</span> P3 Marque minimale (de quoi tester) <span class="lab">à venir</span></div><div class="ph todo" title="1. **Canal prioritaire avec accès réel** : pas juste &quot;ProductHunt&quot; en l&#39;air, mais une tactique avec amorce concrète (liste email 100+, partenaire prêt à booster, mentor PH engagé, budget pub défini). Sans accès → changer de canal."><span class="sym">○</span> P4 Offre &amp; go-to-market (+ validation willingness-to-pay) <span class="lab">à venir</span></div><div class="ph todo" title="`charte.md` + `direction_artistique.md` posés — **obligatoires avant tout visuel public**, et cohérents avec la promesse/le ton qui ont converti en P4."><span class="sym">○</span> P5 Identité de marque complète <span class="lab">à venir</span></div><div class="ph todo" title="MVP qui permet de mesurer l&#39;hypothèse (pas &quot;feature-complete&quot;, &quot;hypothèse-testable&quot;). Gate infra : `git push` GitHub OK + (si web) URL Railway live qui répond."><span class="sym">○</span> P6 Build / MVP <span class="lab">à venir</span></div><div class="ph todo" title="tracking des metrics en place (on saura si le launch marche) + RGPD/CGU OK (voir juridique)."><span class="sym">○</span> P7 Lancement <span class="lab">à venir</span></div></div>
+<div class="grid"><button class="card" data-domain="strategie" aria-expanded="false">
+  <div class="card-head"><span class="dom">Business &amp; stratégie</span><span class="st warn">● actif (28 j)</span></div>
+  <div class="card-sub">7 fichier(s) · 6 rempli(s) · phases P0 P1 P2</div>
+</button><button class="card" data-domain="brand" aria-expanded="false">
+  <div class="card-head"><span class="dom">Marque &amp; éditorial</span><span class="st warn">● actif (28 j)</span></div>
+  <div class="card-sub">10 fichier(s) · 10 rempli(s) · phases P3 P5</div>
+</button><button class="card" data-domain="marketing" aria-expanded="false">
+  <div class="card-head"><span class="dom">Marketing &amp; acquisition</span><span class="st warn">● actif (28 j)</span></div>
+  <div class="card-sub">2 fichier(s) · 2 rempli(s) · phases P4 P7</div>
+</button><button class="card" data-domain="produit" aria-expanded="false">
+  <div class="card-head"><span class="dom">Produit &amp; build</span><span class="st muted">— vide</span></div>
+  <div class="card-sub">0 fichier(s) · 0 rempli(s) · phases P6</div>
+</button><button class="card" data-domain="juridique" aria-expanded="false">
+  <div class="card-head"><span class="dom">Juridique (transverse)</span><span class="st warn">● actif (28 j)</span></div>
+  <div class="card-sub">3 fichier(s) · 2 rempli(s)</div>
+</button><button class="card" data-domain="projets" aria-expanded="false">
+  <div class="card-head"><span class="dom">Projets en cours</span><span class="st warn">● actif (28 j)</span></div>
+  <div class="card-sub">1 fichier(s) · 1 rempli(s)</div>
+</button></div>
+<section class="panel" id="panel-strategie" hidden>
+  <div class="panel-head">
+    <h2>Business &amp; stratégie</h2>
+    <button class="copy" data-domain="strategie">Copier le contexte pour Claude</button>
+  </div>
+  <p class="muted-t">Agents pilotes : meta-business, meta-offre-pricing</p>
+  <h3>À charger en début de conversation</h3><ul><li><code>company/strategie/hypotheses.md</code> — obligatoire avant toute décision stratégique</li><li><code>company/strategie/metrics.md</code> — obligatoire avant toute décision stratégique</li><li><code>company/strategie/business_plan.md</code></li><li><code>company/strategie/distribution.md</code></li></ul>
+  <h3>Fichiers</h3><div class="twrap"><table><thead><tr><th>Fichier</th><th>État</th><th>Taille</th></tr></thead><tbody><tr><td><code>company/strategie/business_plan.md</code></td><td>squelette / à produire</td><td class="num">1.2 ko</td></tr><tr><td><code>company/strategie/distribution.md</code></td><td>modifié il y a 28 j</td><td class="num">1.9 ko</td></tr><tr><td><code>company/strategie/hypotheses.md</code></td><td>modifié il y a 28 j</td><td class="num">2.2 ko</td></tr><tr><td><code>company/strategie/metrics.md</code></td><td>modifié il y a 28 j</td><td class="num">2.0 ko</td></tr><tr><td><code>company/strategie/pitch_deck.md</code></td><td>modifié il y a 28 j</td><td class="num">1.3 ko</td></tr><tr><td><code>company/strategie/plan_financier.md</code></td><td>modifié il y a 28 j</td><td class="num">1.0 ko</td></tr><tr><td><code>company/strategie/subventions.md</code></td><td>modifié il y a 28 j</td><td class="num">1.2 ko</td></tr></tbody></table></div>
+  <details><summary>Bloc de contexte (aperçu)</summary><pre>## Contexte de travail : Business &amp; stratégie — NOM DE TON ENTREPRISE
+Phase courante du projet (heuristique livrables) : P2 — Stratégie &amp; business model.
+Gate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d&#39;échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?
+Phases du playbook liées à ce domaine : P0 Cadrage / idée · P1 Validation / discovery · P2 Stratégie &amp; business model.
+
+Charger avant de travailler :
+- `company/strategie/hypotheses.md` — obligatoire avant toute décision stratégique
+- `company/strategie/metrics.md` — obligatoire avant toute décision stratégique
+- `company/strategie/business_plan.md`
+- `company/strategie/distribution.md`
+
+État des fichiers du domaine :
+- `company/strategie/business_plan.md` — squelette / à produire
+- `company/strategie/distribution.md` — modifié il y a 28 j
+- `company/strategie/hypotheses.md` — modifié il y a 28 j
+- `company/strategie/metrics.md` — modifié il y a 28 j
+- `company/strategie/pitch_deck.md` — modifié il y a 28 j
+- `company/strategie/plan_financier.md` — modifié il y a 28 j
+- `company/strategie/subventions.md` — modifié il y a 28 j
+
+Agents pilotes : meta-business, meta-offre-pricing.</pre></details>
+</section><section class="panel" id="panel-brand" hidden>
+  <div class="panel-head">
+    <h2>Marque &amp; éditorial</h2>
+    <button class="copy" data-domain="brand">Copier le contexte pour Claude</button>
+  </div>
+  <p class="muted-t">Agents pilotes : meta-creation, meta-redacteur</p>
+  <h3>À charger en début de conversation</h3><ul><li><code>company/brand/plateforme.md</code></li><li><code>company/brand/guide_editorial.md</code> — obligatoire avant tout texte au nom de l’entreprise</li><li><code>company/brand/charte.md</code> — obligatoire avant tout visuel</li><li><code>company/brand/direction_artistique.md</code> — obligatoire avant tout visuel</li></ul>
+  <h3>Fichiers</h3><div class="twrap"><table><thead><tr><th>Fichier</th><th>État</th><th>Taille</th></tr></thead><tbody><tr><td><code>company/brand/charte.md</code></td><td>modifié il y a 28 j</td><td class="num">1.6 ko</td></tr><tr><td><code>company/brand/cibles.md</code></td><td>modifié il y a 28 j</td><td class="num">1.0 ko</td></tr><tr><td><code>company/brand/concurrence.md</code></td><td>modifié il y a 28 j</td><td class="num">0.9 ko</td></tr><tr><td><code>company/brand/direction_artistique.md</code></td><td>modifié il y a 28 j</td><td class="num">1.6 ko</td></tr><tr><td><code>company/brand/fondations.md</code></td><td>modifié il y a 28 j</td><td class="num">0.8 ko</td></tr><tr><td><code>company/brand/founder.md</code></td><td>modifié il y a 28 j</td><td class="num">2.1 ko</td></tr><tr><td><code>company/brand/guide_editorial.md</code></td><td>modifié il y a 28 j</td><td class="num">1.6 ko</td></tr><tr><td><code>company/brand/manifesto.md</code></td><td>modifié il y a 28 j</td><td class="num">0.8 ko</td></tr><tr><td><code>company/brand/personas.md</code></td><td>modifié il y a 28 j</td><td class="num">1.1 ko</td></tr><tr><td><code>company/brand/plateforme.md</code></td><td>modifié il y a 28 j</td><td class="num">1.8 ko</td></tr></tbody></table></div>
+  <details><summary>Bloc de contexte (aperçu)</summary><pre>## Contexte de travail : Marque &amp; éditorial — NOM DE TON ENTREPRISE
+Phase courante du projet (heuristique livrables) : P2 — Stratégie &amp; business model.
+Gate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d&#39;échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?
+Phases du playbook liées à ce domaine : P3 Marque minimale (de quoi tester) · P5 Identité de marque complète.
+
+Charger avant de travailler :
+- `company/brand/plateforme.md`
+- `company/brand/guide_editorial.md` — obligatoire avant tout texte au nom de l’entreprise
+- `company/brand/charte.md` — obligatoire avant tout visuel
+- `company/brand/direction_artistique.md` — obligatoire avant tout visuel
+
+État des fichiers du domaine :
+- `company/brand/charte.md` — modifié il y a 28 j
+- `company/brand/cibles.md` — modifié il y a 28 j
+- `company/brand/concurrence.md` — modifié il y a 28 j
+- `company/brand/direction_artistique.md` — modifié il y a 28 j
+- `company/brand/fondations.md` — modifié il y a 28 j
+- `company/brand/founder.md` — modifié il y a 28 j
+- `company/brand/guide_editorial.md` — modifié il y a 28 j
+- `company/brand/manifesto.md` — modifié il y a 28 j
+- `company/brand/personas.md` — modifié il y a 28 j
+- `company/brand/plateforme.md` — modifié il y a 28 j
+
+Agents pilotes : meta-creation, meta-redacteur.</pre></details>
+</section><section class="panel" id="panel-marketing" hidden>
+  <div class="panel-head">
+    <h2>Marketing &amp; acquisition</h2>
+    <button class="copy" data-domain="marketing">Copier le contexte pour Claude</button>
+  </div>
+  <p class="muted-t">Agents pilotes : meta-marketing, meta-ux-conversion</p>
+  <h3>À charger en début de conversation</h3><ul><li><code>company/brand/guide_editorial.md</code> — obligatoire avant tout texte au nom de l’entreprise</li><li><code>company/marketing/plan_marketing.md</code></li><li><code>company/marketing/calendrier_editorial.md</code></li><li><code>company/strategie/distribution.md</code></li></ul>
+  <h3>Fichiers</h3><div class="twrap"><table><thead><tr><th>Fichier</th><th>État</th><th>Taille</th></tr></thead><tbody><tr><td><code>company/marketing/calendrier_editorial.md</code></td><td>modifié il y a 28 j</td><td class="num">1.2 ko</td></tr><tr><td><code>company/marketing/plan_marketing.md</code></td><td>modifié il y a 28 j</td><td class="num">1.1 ko</td></tr></tbody></table></div>
+  <details><summary>Bloc de contexte (aperçu)</summary><pre>## Contexte de travail : Marketing &amp; acquisition — NOM DE TON ENTREPRISE
+Phase courante du projet (heuristique livrables) : P2 — Stratégie &amp; business model.
+Gate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d&#39;échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?
+Phases du playbook liées à ce domaine : P4 Offre &amp; go-to-market (+ validation willingness-to-pay) · P7 Lancement.
+
+Charger avant de travailler :
+- `company/brand/guide_editorial.md` — obligatoire avant tout texte au nom de l’entreprise
+- `company/marketing/plan_marketing.md`
+- `company/marketing/calendrier_editorial.md`
+- `company/strategie/distribution.md`
+
+État des fichiers du domaine :
+- `company/marketing/calendrier_editorial.md` — modifié il y a 28 j
+- `company/marketing/plan_marketing.md` — modifié il y a 28 j
+
+Agents pilotes : meta-marketing, meta-ux-conversion.</pre></details>
+</section><section class="panel" id="panel-produit" hidden>
+  <div class="panel-head">
+    <h2>Produit &amp; build</h2>
+    <button class="copy" data-domain="produit">Copier le contexte pour Claude</button>
+  </div>
+  <p class="muted-t">Agents pilotes : meta-ui-ux, meta-motion</p>
+  <h3>À charger en début de conversation</h3><ul><li><code>.planning/STATE.md</code> — source unique de l’état opérationnel (prime sur le plan structuré)</li><li><code>.planning/ROADMAP.md</code></li></ul>
+  <p class="muted-t">Aucun fichier.</p>
+  <details><summary>Bloc de contexte (aperçu)</summary><pre>## Contexte de travail : Produit &amp; build — NOM DE TON ENTREPRISE
+Phase courante du projet (heuristique livrables) : P2 — Stratégie &amp; business model.
+Gate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d&#39;échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?
+Phases du playbook liées à ce domaine : P6 Build / MVP.
+
+Charger avant de travailler :
+- `.planning/STATE.md` — source unique de l’état opérationnel (prime sur le plan structuré)
+- `.planning/ROADMAP.md`
+
+Agents pilotes : meta-ui-ux, meta-motion.</pre></details>
+</section><section class="panel" id="panel-juridique" hidden>
+  <div class="panel-head">
+    <h2>Juridique (transverse)</h2>
+    <button class="copy" data-domain="juridique">Copier le contexte pour Claude</button>
+  </div>
+  <p class="muted-t">Agents pilotes : meta-juridique</p>
+  <h3>À charger en début de conversation</h3><ul><li><code>company/juridique/statuts.md</code> — obligatoire avant toute demande juridique</li><li><code>company/juridique/checklist_solo.md</code> — si solo founder</li><li><code>company/juridique/pacte_associes.md</code> — si associés</li></ul>
+  <h3>Fichiers</h3><div class="twrap"><table><thead><tr><th>Fichier</th><th>État</th><th>Taille</th></tr></thead><tbody><tr><td><code>company/juridique/checklist_solo.md</code></td><td>modifié il y a 28 j</td><td class="num">2.7 ko</td></tr><tr><td><code>company/juridique/pacte_associes.md</code></td><td>modifié il y a 28 j</td><td class="num">1.4 ko</td></tr><tr><td><code>company/juridique/statuts.md</code></td><td>squelette / à produire</td><td class="num">1.1 ko</td></tr></tbody></table></div>
+  <details><summary>Bloc de contexte (aperçu)</summary><pre>## Contexte de travail : Juridique (transverse) — NOM DE TON ENTREPRISE
+Phase courante du projet (heuristique livrables) : P2 — Stratégie &amp; business model.
+Gate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d&#39;échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?
+
+Charger avant de travailler :
+- `company/juridique/statuts.md` — obligatoire avant toute demande juridique
+- `company/juridique/checklist_solo.md` — si solo founder
+- `company/juridique/pacte_associes.md` — si associés
+
+État des fichiers du domaine :
+- `company/juridique/checklist_solo.md` — modifié il y a 28 j
+- `company/juridique/pacte_associes.md` — modifié il y a 28 j
+- `company/juridique/statuts.md` — squelette / à produire
+
+Agents pilotes : meta-juridique.</pre></details>
+</section><section class="panel" id="panel-projets" hidden>
+  <div class="panel-head">
+    <h2>Projets en cours</h2>
+    <button class="copy" data-domain="projets">Copier le contexte pour Claude</button>
+  </div>
+  
+  
+  <h3>Fichiers</h3><div class="twrap"><table><thead><tr><th>Fichier</th><th>État</th><th>Taille</th></tr></thead><tbody><tr><td><code>company/projets/TEMPLATE_PROJET.md</code></td><td>modifié il y a 28 j</td><td class="num">1.0 ko</td></tr></tbody></table></div>
+  <details><summary>Bloc de contexte (aperçu)</summary><pre>## Contexte de travail : Projets en cours — NOM DE TON ENTREPRISE
+Phase courante du projet (heuristique livrables) : P2 — Stratégie &amp; business model.
+Gate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d&#39;échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?
+
+État des fichiers du domaine :
+- `company/projets/TEMPLATE_PROJET.md` — modifié il y a 28 j</pre></details>
+</section>
+<footer>Vue générée par project-cockpit — la source de vérité reste le markdown du projet. Cliquer un domaine puis « Copier le contexte » et coller en premier message d'une conversation Claude.</footer>
+<script>
+const CTX = {"strategie":"## Contexte de travail : Business & stratégie — NOM DE TON ENTREPRISE\nPhase courante du projet (heuristique livrables) : P2 — Stratégie & business model.\nGate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d'échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?\nPhases du playbook liées à ce domaine : P0 Cadrage / idée · P1 Validation / discovery · P2 Stratégie & business model.\n\nCharger avant de travailler :\n- `company/strategie/hypotheses.md` — obligatoire avant toute décision stratégique\n- `company/strategie/metrics.md` — obligatoire avant toute décision stratégique\n- `company/strategie/business_plan.md`\n- `company/strategie/distribution.md`\n\nÉtat des fichiers du domaine :\n- `company/strategie/business_plan.md` — squelette / à produire\n- `company/strategie/distribution.md` — modifié il y a 28 j\n- `company/strategie/hypotheses.md` — modifié il y a 28 j\n- `company/strategie/metrics.md` — modifié il y a 28 j\n- `company/strategie/pitch_deck.md` — modifié il y a 28 j\n- `company/strategie/plan_financier.md` — modifié il y a 28 j\n- `company/strategie/subventions.md` — modifié il y a 28 j\n\nAgents pilotes : meta-business, meta-offre-pricing.","brand":"## Contexte de travail : Marque & éditorial — NOM DE TON ENTREPRISE\nPhase courante du projet (heuristique livrables) : P2 — Stratégie & business model.\nGate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d'échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?\nPhases du playbook liées à ce domaine : P3 Marque minimale (de quoi tester) · P5 Identité de marque complète.\n\nCharger avant de travailler :\n- `company/brand/plateforme.md`\n- `company/brand/guide_editorial.md` — obligatoire avant tout texte au nom de l’entreprise\n- `company/brand/charte.md` — obligatoire avant tout visuel\n- `company/brand/direction_artistique.md` — obligatoire avant tout visuel\n\nÉtat des fichiers du domaine :\n- `company/brand/charte.md` — modifié il y a 28 j\n- `company/brand/cibles.md` — modifié il y a 28 j\n- `company/brand/concurrence.md` — modifié il y a 28 j\n- `company/brand/direction_artistique.md` — modifié il y a 28 j\n- `company/brand/fondations.md` — modifié il y a 28 j\n- `company/brand/founder.md` — modifié il y a 28 j\n- `company/brand/guide_editorial.md` — modifié il y a 28 j\n- `company/brand/manifesto.md` — modifié il y a 28 j\n- `company/brand/personas.md` — modifié il y a 28 j\n- `company/brand/plateforme.md` — modifié il y a 28 j\n\nAgents pilotes : meta-creation, meta-redacteur.","marketing":"## Contexte de travail : Marketing & acquisition — NOM DE TON ENTREPRISE\nPhase courante du projet (heuristique livrables) : P2 — Stratégie & business model.\nGate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d'échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?\nPhases du playbook liées à ce domaine : P4 Offre & go-to-market (+ validation willingness-to-pay) · P7 Lancement.\n\nCharger avant de travailler :\n- `company/brand/guide_editorial.md` — obligatoire avant tout texte au nom de l’entreprise\n- `company/marketing/plan_marketing.md`\n- `company/marketing/calendrier_editorial.md`\n- `company/strategie/distribution.md`\n\nÉtat des fichiers du domaine :\n- `company/marketing/calendrier_editorial.md` — modifié il y a 28 j\n- `company/marketing/plan_marketing.md` — modifié il y a 28 j\n\nAgents pilotes : meta-marketing, meta-ux-conversion.","produit":"## Contexte de travail : Produit & build — NOM DE TON ENTREPRISE\nPhase courante du projet (heuristique livrables) : P2 — Stratégie & business model.\nGate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d'échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?\nPhases du playbook liées à ce domaine : P6 Build / MVP.\n\nCharger avant de travailler :\n- `.planning/STATE.md` — source unique de l’état opérationnel (prime sur le plan structuré)\n- `.planning/ROADMAP.md`\n\nAgents pilotes : meta-ui-ux, meta-motion.","juridique":"## Contexte de travail : Juridique (transverse) — NOM DE TON ENTREPRISE\nPhase courante du projet (heuristique livrables) : P2 — Stratégie & business model.\nGate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d'échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?\n\nCharger avant de travailler :\n- `company/juridique/statuts.md` — obligatoire avant toute demande juridique\n- `company/juridique/checklist_solo.md` — si solo founder\n- `company/juridique/pacte_associes.md` — si associés\n\nÉtat des fichiers du domaine :\n- `company/juridique/checklist_solo.md` — modifié il y a 28 j\n- `company/juridique/pacte_associes.md` — modifié il y a 28 j\n- `company/juridique/statuts.md` — squelette / à produire\n\nAgents pilotes : meta-juridique.","projets":"## Contexte de travail : Projets en cours — NOM DE TON ENTREPRISE\nPhase courante du projet (heuristique livrables) : P2 — Stratégie & business model.\nGate en cours : unit economics qui tiennent (au moins en hypothèse chiffrée ±20 %) + North Star Metric définie + **red-team passé (2-3 modes d'échec documentés avec parade)**. Le marché est-il assez grand pour *ton* objectif de revenu (pas un seuil VC absolu — un objectif solo est légitime) ?\n\nÉtat des fichiers du domaine :\n- `company/projets/TEMPLATE_PROJET.md` — modifié il y a 28 j"};
+document.getElementById('mode').addEventListener('click', () => document.documentElement.classList.toggle('light'));
+function openDomain(id, scroll = true) {
+  const panel = document.getElementById('panel-' + id);
+  if (!panel) return;
+  document.querySelectorAll('.card').forEach((c) => { const on = c.dataset.domain === id; c.classList.toggle('active', on); c.setAttribute('aria-expanded', String(on)); });
+  document.querySelectorAll('.panel').forEach((p) => { p.hidden = p !== panel; });
+  history.replaceState(null, '', '#' + id);
+  if (scroll) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+document.querySelectorAll('.card').forEach((card) => {
+  card.addEventListener('click', () => openDomain(card.dataset.domain));
+});
+if (location.hash) openDomain(location.hash.slice(1), false);
+document.querySelectorAll('.copy').forEach((btn) => {
+  btn.addEventListener('click', async () => {
+    const text = CTX[btn.dataset.domain];
+    try { await navigator.clipboard.writeText(text); }
+    catch {
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); ta.remove();
+    }
+    btn.classList.add('copied'); btn.textContent = 'Copié — coller en 1er message';
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Copier le contexte pour Claude'; }, 2500);
+  });
+});
+</script>
+</body>
+</html>

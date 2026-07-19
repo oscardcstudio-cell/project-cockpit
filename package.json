@@ -1,0 +1,40 @@
+{
+  "name": "project-cockpit",
+  "version": "0.1.0",
+  "description": "Dashboard de pilotage statique d'un projet structuré company/ (+ GSD .planning/) : domaines cliquables (marketing, business, brand, juridique, produit), phases/gates du COMPANY_PLAYBOOK, fraîcheur des livrables, et bloc « contexte à coller » par domaine pour démarrer une conversation Claude déjà orientée. Vue générée lecture seule — la source de vérité reste le markdown du projet.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Oscar de Canecaude",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscardcstudio-cell/project-cockpit.git"
+  },
+  "exports": {
+    "./scan": "./src/scan/scanProject.js",
+    "./render": "./src/render/renderCockpit.js",
+    "./context": "./src/context/contextBlock.js",
+    "./domains/company": "./src/domains/companyDomains.js",
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "cockpit-generate": "./src/cli.js"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/smoke.mjs"
+  },
+  "keywords": [
+    "dashboard",
+    "cockpit",
+    "pilotage",
+    "company",
+    "gsd",
+    "claude",
+    "context",
+    "static"
+  ]
+}

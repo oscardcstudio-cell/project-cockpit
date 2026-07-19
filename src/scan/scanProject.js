@@ -127,8 +127,10 @@ export function currentPhase(phases, filesByPath) {
     return phases[phases.length - 1] ?? null;
 }
 
-export function scanProject(root, { domains = companyDomains, now = Math.floor(Date.now() / 1000) } = {}) {
-    const useGit = isGitRepo(root);
+// `git: false` → fraîcheur par mtime fs seul (un `git log` par fichier coûte
+// ~15 s sur un gros company/ — rédhibitoire pour un hook SessionStart).
+export function scanProject(root, { domains = companyDomains, now = Math.floor(Date.now() / 1000), git = true } = {}) {
+    const useGit = git && isGitRepo(root);
     const infoRaw = safeRead(root, 'company/info.json');
     let info = null;
     try { info = infoRaw ? JSON.parse(infoRaw) : null; } catch { info = null; }

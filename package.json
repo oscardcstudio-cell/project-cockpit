@@ -1,6 +1,6 @@
 {
   "name": "project-cockpit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Dashboard de pilotage statique d'un projet structuré company/ (+ GSD .planning/) : domaines cliquables (marketing, business, brand, juridique, produit), phases/gates du COMPANY_PLAYBOOK, fraîcheur des livrables, et bloc « contexte à coller » par domaine pour démarrer une conversation Claude déjà orientée. Vue générée lecture seule — la source de vérité reste le markdown du projet.",
   "type": "module",
   "license": "MIT",

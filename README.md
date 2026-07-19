@@ -42,7 +42,9 @@ de fin de conversation (Stop) :
 
 ```bash
 cd subvention_match
-npm i -D file:../../packages/project-cockpit   # ou github:...#v0.1.0
+npm i -D "github:oscardcstudio-cell/project-cockpit#v0.1.3"
+# (github:#tag obligatoire dès que le projet build ailleurs — Railway/Docker ;
+#  file:../../packages/project-cockpit réservé aux projets clone-seul local)
 npx cockpit-generate . --out dashboards/cockpit.html
 ```
 
@@ -59,6 +61,8 @@ import { buildContextBlock } from 'project-cockpit/context';
 import { renderCockpit } from 'project-cockpit/render';
 
 const model = scanProject('/chemin/projet');       // lecture seule
+// { git: false } → fraîcheur par mtime fs seul (2 ms au lieu de ~15 s de git log
+// par fichier) — obligatoire dans un hook SessionStart.
 const html  = renderCockpit(model);                // page complète
 const bloc  = buildContextBlock(model, 'marketing'); // markdown injectable
 ```
@@ -91,8 +95,12 @@ non standard passe sa propre carte : `scanProject(root, { domains: maCarte })`.
 
 ## Heuristiques assumées (affichées comme telles)
 
-- **Livrable « rempli »** : fichier ≥ 600 octets **et** sans placeholders de template
-  (`[NOM DE L'ENTREPRISE]`… — ≥ 2 occurrences = squelette create-company).
+- **Livrable « rempli »** : fichier ≥ 600 octets **et** < 2 placeholders de template.
+  Un placeholder = crochet **multi-mots** type `[NOM DE L'ENTREPRISE]` ; les crochets
+  mono-mot (`[VÉRIF]`, `[CNM]`, `[CXL]`) et les tags épistémiques connus
+  (`[HYPOTHÈSE]`, `[DONNÉE RÉELLE]`, `[À SOURCER]`, `[RÉFUTÉ 0-3]`…) ne comptent
+  jamais — calibré sur le corpus réel Mecene (v0.1.1–v0.1.2). Un `.json` non vide
+  est toujours « rempli » (config GSD de 340 o ≠ squelette).
 - **Phase courante** : première phase du playbook dont un livrable attendu est
   absent ou squelette. `.planning/STATE.md` reste l'état opérationnel qui **prime**
   (règle GOTCHAS 2026-07-18) — le cockpit l'affiche, ne le remplace pas.

@@ -11,20 +11,25 @@ import companyDomains from '../domains/companyDomains.js';
 const FILLED_MIN_BYTES = 600; // en dessous : considéré squelette/template (heuristique affichée comme telle)
 // ≥ 2 placeholders type [NOM DE L'ENTREPRISE] = template create-company pas encore rempli
 const PLACEHOLDER_RE = /\[[A-ZÀ-Ÿ][A-ZÀ-Ÿ0-9 '’/.-]{2,}\]/g;
-// Tags épistémiques marquant le statut d'une affirmation dans un doc rempli
-// ([HYPOTHÈSE], [DONNÉE RÉELLE], [À SOURCER]…) : ce ne sont PAS des placeholders
-// de template — un decisions-log dense en est truffé. Exemptés par préfixe.
+// Un placeholder de template est un groupe nominal multi-mots décrivant quoi
+// insérer ([NOM DE L'ENTREPRISE], [ADJECTIF 1]). Les crochets mono-mot sont des
+// tags ([VÉRIF], [FRAGILE]), acronymes ou citations ([CNM], [CXL]) présents dans
+// des docs remplis — jamais comptés. Les tags épistémiques multi-mots connus
+// ([DONNÉE RÉELLE], [À SOURCER], [RÉFUTÉ 0-3]…) sont exemptés par préfixe.
 const EPISTEMIC_TAG_PREFIXES = [
     'HYPOTHÈSE', 'DONNÉE RÉELLE', 'À SOURCER', 'À VÉRIFIER', 'À MESURER',
-    'TODO', 'WIP', 'N/A',
+    'RÉFUTÉ', 'TODO', 'WIP', 'N/A',
 ];
 
 function isPlaceholder(match) {
     const inner = match.slice(1, -1);
+    if (!inner.includes(' ')) return false;
     return !EPISTEMIC_TAG_PREFIXES.some((p) => inner.startsWith(p));
 }
 
 function isFilled(root, rel, bytes) {
+    // Un .json non vide est complet quelle que soit sa taille (config, manifest…)
+    if (/\.json$/i.test(rel)) return bytes > 2;
     if (bytes < FILLED_MIN_BYTES) return false;
     if (!/\.md$/i.test(rel)) return true;
     const content = safeRead(root, rel) ?? '';

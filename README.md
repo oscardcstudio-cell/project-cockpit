@@ -30,6 +30,27 @@ import { scanPlan } from 'project-cockpit/plan';
 const r = scanPlan(process.cwd());   // { ok, steps[], offPlan, unmapped, mapping }
 ```
 
+### Le tag d'étape dans les commits (v0.3.0)
+
+Le rattachement par scope est grossier : `fix(matching)` peut servir une étape
+comme une autre. Le hook git `commit-msg` pose un trailer `Step: <id>` — mais
+**sans rien demander** dans le cas courant : il lit le scope, le résout via la
+table, et écrit le trailer lui-même. Il ne bloque que sur un scope absent de la
+table, c'est-à-dire au seul moment où il faut décider à quelle étape ce travail
+appartient.
+
+```sh
+# .githooks/commit-msg  (avec core.hooksPath=.githooks)
+BIN="node_modules/project-cockpit/src/plan/commitStepTag.js"
+[ -f "$BIN" ] || exit 0
+node "$BIN" "$1" || exit 1
+```
+
+Silencieux si le package n'est pas installé (clone frais) ou si le projet n'a pas
+de table. Les commits fabriqués par git (`Merge`, `Revert`, `fixup!`, `squash!`)
+ne sont jamais touchés. Échappatoire explicite : écrire `Step: ·` à la main
+déclare un travail hors plan.
+
 Deux fichiers côté projet, aucun côté package :
 `.planning/launch-plan.json` (les étapes) et `.planning/plan-map.json` (la table).
 Table absente → `ok:false` avec la raison. **Le module ne devine jamais** un

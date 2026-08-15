@@ -11,6 +11,35 @@ Dashboard de **pilotage projet** statique pour tout projet structuré `company/`
   agents pilotes) à coller en premier message d'une conversation — Claude sait
   immédiatement de quoi on parle, quel que soit le dossier de démarrage.
 
+## Avancement dérivé de git (`project-cockpit/plan`, v0.2.0)
+
+Un plan tenu à la main enregistre ce qu'on **décide**, pas ce qu'on **fait**.
+Mesuré sur Mecene le 2026-08-15, 1037 commits : l'étape E était déclarée à 1/7
+alors qu'elle concentrait **26 % de tout le repo** ; l'étape G était déclarée à
+2/7 avec **zéro commit** (ses « acquis » étaient des décisions, pas du code).
+
+`scanPlan()` rattache chaque commit à une étape via une table `scope → étape`
+écrite **une seule fois** par projet, puis calcule volume, dates, inactivité et
+**contradictions** :
+
+- `declaree-close-mais-active` — étape marquée finie qui reçoit encore des commits ;
+- `travail-non-enregistre` — étape à fort volume dont les sous-étapes restent décochées.
+
+```js
+import { scanPlan } from 'project-cockpit/plan';
+const r = scanPlan(process.cwd());   // { ok, steps[], offPlan, unmapped, mapping }
+```
+
+Deux fichiers côté projet, aucun côté package :
+`.planning/launch-plan.json` (les étapes) et `.planning/plan-map.json` (la table).
+Table absente → `ok:false` avec la raison. **Le module ne devine jamais** un
+rattachement, et il ne prétend pas mesurer l'achèvement : il mesure où va le
+travail, ce que git sait réellement dire.
+
+> Piège vérifié : le proxy RTK tronque `git log` d'un facteur ~164 quand la
+> commande passe par un shell (35 lignes rendues au lieu de 5764, en silence).
+> `readCommits()` appelle `execFileSync` directement pour contourner le hook.
+
 **Principe non négociable** : le cockpit est une *vue générée*, jamais éditée.
 La source de vérité reste le markdown du projet (`company/`, `.planning/STATE.md`).
 Zéro serveur, zéro DB, zéro état propre → zéro divergence possible.

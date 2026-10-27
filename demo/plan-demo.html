@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan de projet</title>
+<style>
+:root { --bg:#0d1117; --surface:#161b22; --fg:#c9d1d9; --fg2:#8b949e; --accent:#58a6ff; --ok:#3fb950; --warn:#e3b341; --danger:#f85149; --border:#30363d; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; padding:24px; overflow-x:hidden; }
+header { margin-bottom:20px; }
+h1 { font-size:18px; margin:0 0 4px; }
+h1 small { color:var(--fg2); font-weight:normal; }
+h2 { font-size:14px; text-transform:uppercase; letter-spacing:.05em; color:var(--fg2); margin:0 0 10px; }
+.alerts { margin-bottom:24px; }
+.alert { border:1px solid var(--danger); border-left:4px solid var(--danger); border-radius:8px; background:var(--surface); padding:10px 14px; margin-bottom:10px; }
+.alert.warn { border-color:var(--warn); border-left-color:var(--warn); }
+.alert-head { font-weight:600; margin-bottom:4px; }
+.alert p { margin:0; color:var(--fg); }
+.stepid { display:inline-block; background:var(--bg); border:1px solid var(--border); border-radius:4px; padding:1px 6px; font-size:12px; color:var(--fg2); margin-right:6px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin-bottom:24px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px; }
+.card.has-warn { border-color:var(--warn); }
+.card.offplan { border-style:dashed; }
+.card-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px; margin-bottom:10px; }
+.title { font-weight:600; flex:1; min-width:0; }
+.st { font-size:12px; white-space:nowrap; margin-left:auto; }
+.st.ok { color:var(--ok); } .st.accent { color:var(--accent); } .st.muted { color:var(--fg2); }
+.compare { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:8px; }
+.compare .col { display:flex; flex-direction:column; }
+.compare .k { color:var(--fg2); font-size:11px; text-transform:uppercase; letter-spacing:.03em; }
+.compare .v { font-size:13px; }
+.warnbadge { display:inline-block; font-size:12px; color:var(--warn); margin-bottom:6px; }
+details { margin-top:4px; }
+details summary { cursor:pointer; color:var(--accent); font-size:12px; }
+.detail { margin-top:8px; display:flex; flex-direction:column; gap:4px; font-size:13px; }
+.detail .k { color:var(--fg2); font-size:11px; text-transform:uppercase; letter-spacing:.03em; margin-right:6px; }
+code { background:var(--bg); border:1px solid var(--border); border-radius:4px; padding:0 4px; color:var(--accent); font-size:12px; }
+.muted-t { color:var(--fg2); font-size:12px; margin:6px 0 0; }
+footer { color:var(--fg2); font-size:12px; margin-top:8px; }
+@media (max-width:720px) {
+  body { padding:14px; }
+  .compare { gap:10px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Plan de projet <small>· lecture seule · 1040 commits analysés, 816 rattachés à une étape</small></h1>
+</header>
+
+<section class="alerts"><h2>⚠ Contradictions déclaré / mesuré (2)</h2><div class="alert danger">
+  <div class="alert-head"><span class="stepid">B</span> Auth &amp; comptes association</div>
+  <p>Déclarée 11/11 (close) mais 105 commits il y a 1 j — 10,1 % du dépôt encore mobilisés dessus.</p>
+</div><div class="alert warn">
+  <div class="alert-head"><span class="stepid">E</span> Dossier de candidature assisté</div>
+  <p>Déclarée 1/7 seulement, mais 272 commits (26,2 % du dépôt) déjà investis — le plan sous-compte le travail réel.</p>
+</div></section>
+
+<h2>Étapes</h2>
+<div class="grid"><article class="card">
+  <div class="card-head">
+    <span class="stepid">A</span>
+    <span class="title">Cadrage &amp; maquettes</span>
+    <span class="st ok">✓ terminée</span>
+  </div>
+  <div class="compare">
+    <div class="col"><span class="k">déclaré</span><span class="v">5/5</span></div>
+    <div class="col"><span class="k">mesuré</span><span class="v">0 commit · 0,0 %</span></div>
+    <div class="col"><span class="k">inactif</span><span class="v">—</span></div>
+  </div>
+  
+  <details>
+    <summary>Détail</summary>
+    <div class="detail">
+      <div><span class="k">première activité</span> —</div>
+      <div><span class="k">dernière activité</span> —</div>
+      <div><span class="k">scopes</span> <span class="muted-t">aucune</span></div>
+    </div>
+  </details>
+</article><article class="card has-warn">
+  <div class="card-head">
+    <span class="stepid">B</span>
+    <span class="title">Auth &amp; comptes association</span>
+    <span class="st ok">✓ terminée</span>
+  </div>
+  <div class="compare">
+    <div class="col"><span class="k">déclaré</span><span class="v">11/11</span></div>
+    <div class="col"><span class="k">mesuré</span><span class="v">105 commits · 10,1 %</span></div>
+    <div class="col"><span class="k">inactif</span><span class="v">1 j</span></div>
+  </div>
+  <span class="warnbadge">⚠ close mais active</span>
+  <details>
+    <summary>Détail</summary>
+    <div class="detail">
+      <div><span class="k">première activité</span> 2025-06-15</div>
+      <div><span class="k">dernière activité</span> 2025-08-13</div>
+      <div><span class="k">scopes</span> <code>auth</code> <code>session</code> <code>onboarding</code></div>
+    </div>
+  </details>
+</article><article class="card">
+  <div class="card-head">
+    <span class="stepid">C</span>
+    <span class="title">Fiches subventions &amp; recherche</span>
+    <span class="st ok">✓ terminée</span>
+  </div>
+  <div class="compare">
+    <div class="col"><span class="k">déclaré</span><span class="v">9/9</span></div>
+    <div class="col"><span class="k">mesuré</span><span class="v">21 commits · 2,0 %</span></div>
+    <div class="col"><span class="k">inactif</span><span class="v">14 j</span></div>
+  </div>
+  
+  <details>
+    <summary>Détail</summary>
+    <div class="detail">
+      <div><span class="k">première activité</span> 2025-05-23</div>
+      <div><span class="k">dernière activité</span> 2025-07-30</div>
+      <div><span class="k">scopes</span> <code>fiches</code> <code>search</code></div>
+    </div>
+  </details>
+</article><article class="card">
+  <div class="card-head">
+    <span class="stepid">D</span>
+    <span class="title">Matching organisme ↔ dispositif</span>
+    <span class="st accent">▶ en cours</span>
+  </div>
+  <div class="compare">
+    <div class="col"><span class="k">déclaré</span><span class="v">12/14</span></div>
+    <div class="col"><span class="k">mesuré</span><span class="v">191 commits · 18,4 %</span></div>
+    <div class="col"><span class="k">inactif</span><span class="v">1 j</span></div>
+  </div>
+  
+  <details>
+    <summary>Détail</summary>
+    <div class="detail">
+      <div><span class="k">première activité</span> 2025-06-04</div>
+      <div><span class="k">dernière activité</span> 2025-08-13</div>
+      <div><span class="k">scopes</span> <code>matching</code> <code>scoring</code> <code>eligibilite</code></div>
+    </div>
+  </details>
+</article><article class="card has-warn">
+  <div class="card-head">
+    <span class="stepid">E</span>
+    <span class="title">Dossier de candidature assisté</span>
+    <span class="st muted">○ à faire</span>
+  </div>
+  <div class="compare">
+    <div class="col"><span class="k">déclaré</span><span class="v">1/7</span></div>
+    <div class="col"><span class="k">mesuré</span><span class="v">272 commits · 26,2 %</span></div>
+    <div class="col"><span class="k">inactif</span><span class="v">0 j</span></div>
+  </div>
+  <span class="warnbadge">⚠ travail non enregistré</span>
+  <details>
+    <summary>Détail</summary>
+    <div class="detail">
+      <div><span class="k">première activité</span> 2025-05-11</div>
+      <div><span class="k">dernière activité</span> 2025-08-14</div>
+      <div><span class="k">scopes</span> <code>dossier</code> <code>redaction</code> <code>export</code> <code>pdf</code></div>
+    </div>
+  </details>
+</article><article class="card">
+  <div class="card-head">
+    <span class="stepid">F</span>
+    <span class="title">Notifications &amp; rappels d’échéance</span>
+    <span class="st muted">○ à faire</span>
+  </div>
+  <div class="compare">
+    <div class="col"><span class="k">déclaré</span><span class="v">0/3</span></div>
+    <div class="col"><span class="k">mesuré</span><span class="v">0 commit · 0,0 %</span></div>
+    <div class="col"><span class="k">inactif</span><span class="v">—</span></div>
+  </div>
+  
+  <details>
+    <summary>Détail</summary>
+    <div class="detail">
+      <div><span class="k">première activité</span> —</div>
+      <div><span class="k">dernière activité</span> —</div>
+      <div><span class="k">scopes</span> <span class="muted-t">aucune</span></div>
+    </div>
+  </details>
+</article><article class="card">
+  <div class="card-head">
+    <span class="stepid">G</span>
+    <span class="title">Paiement &amp; abonnement asso</span>
+    <span class="st muted">○ à faire</span>
+  </div>
+  <div class="compare">
+    <div class="col"><span class="k">déclaré</span><span class="v">2/7</span></div>
+    <div class="col"><span class="k">mesuré</span><span class="v">0 commit · 0,0 %</span></div>
+    <div class="col"><span class="k">inactif</span><span class="v">—</span></div>
+  </div>
+  
+  <details>
+    <summary>Détail</summary>
+    <div class="detail">
+      <div><span class="k">première activité</span> —</div>
+      <div><span class="k">dernière activité</span> —</div>
+      <div><span class="k">scopes</span> <span class="muted-t">aucune</span></div>
+    </div>
+  </details>
+</article><article class="card offplan">
+  <div class="card-head"><span class="title">Hors plan</span></div>
+  <div class="compare">
+    <div class="col"><span class="k">mesuré</span><span class="v">224 commits · 21,6 %</span></div>
+  </div>
+  <p class="muted-t">Effort qui n'avance aucune étape déclarée (outillage, pilotage, notes…).</p>
+</article></div>
+
+<footer>Rattachement scope→étape : <code>.planning/plan-map.json</code> (24 entrées).</footer>
+</body>
+</html>

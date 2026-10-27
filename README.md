@@ -7,7 +7,7 @@ Dashboard de **pilotage projet** statique pour tout projet structuré `company/`
 - la **gamme des phases** du `COMPANY_PLAYBOOK.md` avec gates (passée / en cours / à venir) ;
 - la **fraîcheur des livrables** (date du dernier commit par fichier, fallback mtime) ;
 - par domaine, un bouton **« Copier le contexte pour Claude »** : un bloc markdown
-  (phase courante, fichiers à charger + règles non-négociables, état des fichiers,
+  (phase courante, fichiers à charger + règles à respecter, état des fichiers,
   agents pilotes) à coller en premier message d'une conversation — Claude sait
   immédiatement de quoi on parle, quel que soit le dossier de démarrage.
 
@@ -61,7 +61,7 @@ travail, ce que git sait réellement dire.
 > commande passe par un shell (35 lignes rendues au lieu de 5764, en silence).
 > `readCommits()` appelle `execFileSync` directement pour contourner le hook.
 
-**Principe non négociable** : le cockpit est une *vue générée*, jamais éditée.
+**Principe de base** : le cockpit est une *vue générée*, jamais éditée.
 La source de vérité reste le markdown du projet (`company/`, `.planning/STATE.md`).
 Zéro serveur, zéro DB, zéro état propre → zéro divergence possible.
 
@@ -69,9 +69,7 @@ Zéro serveur, zéro DB, zéro état propre → zéro divergence possible.
 
 ```bash
 # en dépendance versionnée (Docker/Railway ET clone-seul)
-npm i -D github:oscardcstudio-cell/project-cockpit#v0.1.0
-# ou en local (monorepo de packages)
-npm i -D file:../../packages/project-cockpit
+npm i -D github:oscardcstudio-cell/project-cockpit#v0.3.0
 ```
 
 ## Usage
@@ -93,8 +91,7 @@ de fin de conversation (Stop) :
 ```bash
 cd subvention_match
 npm i -D "github:oscardcstudio-cell/project-cockpit#v0.1.3"
-# (github:#tag obligatoire dès que le projet build ailleurs — Railway/Docker ;
-#  file:../../packages/project-cockpit réservé aux projets clone-seul local)
+# (github:#tag obligatoire : jamais de copie ni de file:)
 npx cockpit-generate . --out dashboards/cockpit.html
 ```
 

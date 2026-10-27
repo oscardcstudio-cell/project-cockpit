@@ -1,0 +1,22 @@
+# project-cockpit
+> Dashboard statique de pilotage d'un projet structuré `company/` (+ GSD `.planning/`) : domaines, phases et gates, fraîcheur des livrables, plan dérivé, bloc de contexte à coller à Claude.
+
+## Vue d'ensemble
+- [CLAUDE.md](CLAUDE.md): règles du repo
+- [README.md](README.md): installation, usage, branchement
+- [demo/cockpit-meta.html](demo/cockpit-meta.html): exemple de cockpit généré
+- [demo/plan-demo.html](demo/plan-demo.html): exemple de vue plan générée
+
+## Fichiers critiques
+- [src/cli.js](src/cli.js): CLI `cockpit-generate`
+- [src/scan/scanProject.js](src/scan/scanProject.js): scan du projet (domaines, phases, fraîcheur par date de commit)
+- [src/render/renderCockpit.js](src/render/renderCockpit.js): rendu HTML du cockpit
+- [src/plan/scanPlan.js](src/plan/scanPlan.js): modèle du plan (déclaré contre mesuré)
+- [src/plan/renderPlan.js](src/plan/renderPlan.js): rendu HTML du plan, contradictions en premier
+- [src/plan/commitStepTag.js](src/plan/commitStepTag.js): CLI `cockpit-step-tag`, étiquette un commit avec son étape
+- [src/context/contextBlock.js](src/context/contextBlock.js): bloc markdown « contexte pour Claude » par domaine
+- [src/domains/companyDomains.js](src/domains/companyDomains.js): définition des domaines company
+
+## Points non-évidents (gotchas)
+- Zéro serveur, zéro DB : la page est autonome, sans JS d'action.
+- La fraîcheur d'un livrable vient de git, avec repli sur la date de modification du fichier.

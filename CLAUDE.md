@@ -9,3 +9,6 @@ Package partagé : génère un dashboard HTML statique de pilotage (domaines, ph
 - La page générée est une vue en lecture seule : la source de vérité reste le markdown du projet, jamais éditer le HTML produit.
 - Sortie dans un emplacement versionné du projet (`dashboards/cockpit.html`), jamais dans un temp OS.
 - Carte des fichiers : [llms.txt](llms.txt).
+
+## Tâches = Beads
+Les tâches restantes vivent dans Beads (`bd ready`, `bd list`), pas dans un fichier de notes. Une tâche finie : `bd close <id>`.
